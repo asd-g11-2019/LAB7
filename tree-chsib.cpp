@@ -122,6 +122,8 @@ Error tree::deleteElemR(const Label l, Tree& t)
 
 
 bool contains (const Label l, const Tree& t) {
+  if(isEmpty(t->firstChild))
+	return false;
   treeNode* tn = t->firstChild;
 
   do {
