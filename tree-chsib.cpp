@@ -195,9 +195,22 @@ int tree::degree(const Label l, const Tree& t)
 // La lista può essere implementata usando una delle strutture dati viste a lezione
 // (non un Vector)
 // (può anche non essere ricorsiva la ancestorsR, ma deve fare uso di funzioni ausiliarie ricorsive)
+void ancR(const Label l, const Tree& t, list::List& lst){
+	if(isEmpty(t)||t->label==l)
+		return;
+	if(member(l,t)){
+		list::addBack(t->label,lst);
+		ancR(l,t->firstChild,lst);
+	}
+	else
+		ancR(l,t->nextSibling,lst);
+}
+
+
 list::List tree::ancestorsR(const Label l, const Tree& t)
 {
   list::List lst = list::createEmpty();
+  ancR(l,t,lst);
   return lst;
 }
 
