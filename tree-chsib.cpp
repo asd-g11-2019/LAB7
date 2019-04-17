@@ -164,16 +164,21 @@ Label tree::father(const Label l, const Tree& t)
 list::List tree::children(const Label l, const Tree& t)
 {
   list::List lst = list::createEmpty();
+	
+  Tree f=getNode(l,t);
+  
+  if(!isEmpty(f)) {
+	  treeNode* fc = f->firstChild;
+	  if(!isEmpty(fc)){
+		  list::addBack(fc->label, lst);
 
-  treeNode* tn = t->firstChild;
-
-  list::addBack(tn->label, lst);
-
-  while (tn->nextSibling != emptyTree) {
-    tn = tn->nextSibling;
-    list::addBack(tn->label, lst);
+		  while (fc->nextSibling != emptyTree) {
+		    fc = fc->nextSibling;
+		    list::addBack(fc->label, lst);
+		  }
+	  }
   }
-
+  
   return lst;
 }
 
