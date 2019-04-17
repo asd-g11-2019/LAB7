@@ -248,8 +248,11 @@ Label tree::leastCommonAncestor(const Label label1, const Label label2, const Tr
 // member restituisce true se il nodo etichettato con la label l appartiene all'albero t e false altrimenti
 bool tree::member(const Label l, const Tree& t)
 {
+  if(getNode(l,t)!=emptyTree)
+	return true;
   return false;
 }
+
 
 
 
